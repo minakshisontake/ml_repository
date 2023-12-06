@@ -25,8 +25,14 @@ class DataTransformation:
         '''
 
         try:
-            numerical_columns=['writing score','reading score']
-            categorical_columns=['gender','race/ethnicity','parental level of education','lunch','test preparation course']
+            numerical_columns=["writing_score", "reading_score"]
+            categorical_columns=[
+                "gender",
+                "race_ethnicity",
+                "parental_level_of_education",
+                "lunch",
+                "test_preparation_course",
+            ]
 
             num_pipeline=Pipeline(
                 steps=[
@@ -72,8 +78,8 @@ class DataTransformation:
             logging.info('obtaining preprocessing object')
             preprocessing_obj=self.get_data_transformer_obj()
 
-            target_column_name='math score'
-            numerical_columns=['writing score','reading score']
+            target_column_name="math_score"
+            numerical_columns=["writing_score", "reading_score"]
 
 
             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)
@@ -108,7 +114,8 @@ class DataTransformation:
 
             return(
                 train_arr,
-                test_arr      
+                test_arr,
+                self.data_transformation_config.preprocessor_obj_file_path     
 
             )
 
